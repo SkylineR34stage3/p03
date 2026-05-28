@@ -22,7 +22,7 @@ def score_parser(argv: list[int]) -> None:
     print(f"Score range:\t{max_score - min(argv)}")
 
 
-if __name__ == "__main__":
+def main() -> None:
     print("=== Player Score Analytics ===")
     argv_int = argv_parser(sys.argv)
     if not argv_int:
@@ -31,3 +31,7 @@ if __name__ == "__main__":
     else:
         print(f"Scores processed: {argv_int}")
         score_parser(argv_int)
+
+
+if __name__ == "__main__":
+    main()
