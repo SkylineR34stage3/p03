@@ -14,12 +14,12 @@ def argv_parser(argv: list[str]) -> list[int]:
 
 def score_parser(argv: list[int]) -> None:
     max_score = max(argv)
-    print(f"Total players: {len(argv)}")
-    print(f"Total score: {sum(argv)}")
-    print(f"Average score: {round(sum(argv) / len(argv), 1)}")
-    print(f"High score: {max_score}")
-    print(f"Low score: {min(argv)}")
-    print(f"Score range: {max_score - min(argv)}")
+    print(f"\nTotal players:\t{len(argv)}")
+    print(f"Total score:\t{sum(argv)}")
+    print(f"Average score:\t{round(sum(argv) / len(argv), 1)}")
+    print(f"High score:\t{max_score}")
+    print(f"Low score:\t{min(argv)}")
+    print(f"Score range:\t{max_score - min(argv)}")
 
 
 if __name__ == "__main__":
