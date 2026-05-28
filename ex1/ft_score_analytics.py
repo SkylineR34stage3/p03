@@ -1,0 +1,33 @@
+import sys
+
+
+def argv_parser(argv: list[str]) -> list[int]:
+    argv = argv[1:]
+    argv_int = []
+    for i in argv:
+        try:
+            argv_int.append(int(i))
+        except ValueError:
+            print(f"Invalid parameter: '{i}'")
+    return argv_int
+
+
+def score_parser(argv: list[int]) -> None:
+    max_score = max(argv)
+    print(f"Total players: {len(argv)}")
+    print(f"Total score: {sum(argv)}")
+    print(f"Average score: {round(sum(argv) / len(argv), 1)}")
+    print(f"High score: {max_score}")
+    print(f"Low score: {min(argv)}")
+    print(f"Score range: {max_score - min(argv)}")
+
+
+if __name__ == "__main__":
+    print("=== Player Score Analytics ===")
+    argv_int = argv_parser(sys.argv)
+    if not argv_int:
+        print("No scores provided." +
+              " Usage: python3 ft_score_analytics.py <score1> <score2> ...")
+    else:
+        print(f"Scores processed: {argv_int}")
+        score_parser(argv_int)
