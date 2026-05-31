@@ -18,7 +18,7 @@ def print_distinct(achievements: list[set[str]]) -> None:
 
 def print_common(achievements: list[set[str]]) -> None:
     print(
-        f"\nCommon achievements:"
+        f"\nCommon achievements: "
         f"{achievements[0].intersection(*achievements[1:])}\n"
         )
 
@@ -41,12 +41,14 @@ def print_missing(
     while i < len(names):
         print(
             f"{names[i]} is missing: "
-            f"{set(all_achievements) - achievements[i]}"
+            f"{set(all_achievements).difference(achievements[i])}"
             )
         i += 1
 
 
 def main() -> None:
+    print("=== Achievement Tracker System ===\n")
+
     all_achievements: list[str] = [
         "First Steps", "Speed Runner", "Survivor", "Master Explorer",
         "Treasure Hunter", "Boss Slayer", "Crafting Genius", "World Savior",
