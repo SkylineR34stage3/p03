@@ -18,22 +18,39 @@ def gen_event() -> typing.Generator[tuple[str, str], None, None]:
         yield (random.choice(names), random.choice(actions))
 
 
+def consume_event(
+        events: list[tuple[str, str]]
+        ) -> typing.Generator[tuple[str, str], None, None]:
+    while len(events):
+        event = random.choice(events)
+        events.remove(event)
+
+        yield event
+
+
 def get_ten_events() -> list[tuple[str, str]]:
     ten_events: list[tuple[str, str]] = []
     g = gen_event()
     for _ in range(10):
         ten_events.append(next(g))
+
     return ten_events
 
 
 def main() -> None:
     print("=== Game Data Stream Processor ===\n")
+
     g = gen_event()
     for i in range(1000):
         name, action = next(g)
         print(f"Event {i}: Player {name} did action {action}")
+
     ten_events = get_ten_events()
     print(f"Built list of 10 events: {ten_events}")
+
+    for event in consume_event(ten_events):
+        print(f"Got event from list: {event}")
+        print(f"Remains in list: {ten_events}")
 
 
 if __name__ == "__main__":
