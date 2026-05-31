@@ -6,8 +6,10 @@ def gen_player_achievements(pool: list[str]) -> set[str]:
 
 
 def print_players(names: list[str], achievements: list[set[str]]) -> None:
-    for i in range(len(names)):
+    i = 0
+    while i < len(names):
         print(f"Player {names[i]}: {achievements[i]}")
+        i += 1
 
 
 def print_distinct(achievements: list[set[str]]) -> None:
@@ -19,6 +21,10 @@ def print_common(achievements: list[set[str]]) -> None:
         f"\nCommon achievements:"
         f"{achievements[0].intersection(*achievements[1:])}"
         )
+
+
+def print_unique(names: list[str], achievements: list[set[str]]) -> None:
+    pass
 
 
 def main() -> None:
@@ -36,7 +42,10 @@ def main() -> None:
         achievements.append(gen_player_achievements(all_achievements))
     print_players(names, achievements)
     print_distinct(achievements)
-    print_common(achievements)
+    try:
+        print_common(achievements)
+    except IndexError as e:
+        print(f"IndexError occurred: {e}")
 
 
 if __name__ == "__main__":
