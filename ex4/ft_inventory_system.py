@@ -3,7 +3,7 @@ import sys
 
 def argv_parser(argv: list[str]) -> dict[str, int]:
     argv = argv[1:]
-    inventory = {}
+    inventory: dict[str, int] = {}
     for i in argv:
         slot: list[str] = i.split(':')
         if len(slot) == 1:
@@ -38,18 +38,19 @@ def print_item_stats(inventory: dict[str, int]) -> None:
     item_count = len(inventory)
     total = sum(inventory.values())
     print(f"Total quantity of the {item_count} items: {total}")
-    for key in inventory:
-        percentage = round((inventory[key] / total) * 100, 1)
-        print(f"Item {key} represents {percentage}%")
-    min_max = get_min_max(inventory)
-    print(
-        f"Item most abundant: {min_max[1]}"
-        f" with quantity {inventory[min_max[1]]}"
-        )
-    print(
-        f"Item least abundant: {min_max[0]}"
-        f" with quantity {inventory[min_max[0]]}"
-        )
+    if total:
+        for key in inventory:
+            percentage = round((inventory[key] / total) * 100, 1)
+            print(f"Item {key} represents {percentage}%")
+        min_key, max_key = get_min_max(inventory)
+        print(
+            f"Item most abundant: {max_key}"
+            f" with quantity {inventory[max_key]}"
+            )
+        print(
+            f"Item least abundant: {min_key}"
+            f" with quantity {inventory[min_key]}"
+            )
 
 
 def main() -> None:
@@ -58,6 +59,8 @@ def main() -> None:
     print(f"Got inventory: {inventory}")
     print(f"Item list: {list(inventory.keys())}")
     print_item_stats(inventory)
+    inventory.update({"magic_item": 1})
+    print(f"Updated inventory: {inventory}")
 
 
 if __name__ == "__main__":
