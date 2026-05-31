@@ -15,7 +15,7 @@ def argv_parser(argv: list[str]) -> dict[str, int]:
         try:
             quantity = int(slot[1])
         except ValueError as e:
-            print(f"Quantity error for '{slot[0]}': {e}: '{slot[1]}'")
+            print(f"Quantity error for '{slot[0]}': {e}")
             continue
         inventory.update({slot[0]: quantity})
     return inventory
