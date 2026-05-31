@@ -2,7 +2,7 @@ import random
 
 
 def gen_player_achievements(pool: list[str]) -> set[str]:
-    return set(random.sample(pool, random.randint(10, 16)))
+    return set(random.sample(pool, random.randint(4, 16)))
 
 
 def print_players(names: list[str], achievements: list[set[str]]) -> None:
@@ -31,6 +31,21 @@ def print_unique(names: list[str], achievements: list[set[str]]) -> None:
         i += 1
 
 
+def print_missing(
+        names: list[str],
+        achievements: list[set[str]],
+        all_achievements: list[str]
+        ) -> None:
+    i = 0
+    print()
+    while i < len(names):
+        print(
+            f"{names[i]} is missing: "
+            f"{set(all_achievements) - achievements[i]}"
+            )
+        i += 1
+
+
 def main() -> None:
     all_achievements: list[str] = [
         "First Steps", "Speed Runner", "Survivor", "Master Explorer",
@@ -51,6 +66,7 @@ def main() -> None:
     except IndexError as e:
         print(f"IndexError occurred: {e}")
     print_unique(names, achievements)
+    print_missing(names, achievements, all_achievements)
 
 
 if __name__ == "__main__":
