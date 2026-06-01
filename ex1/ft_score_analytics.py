@@ -3,7 +3,7 @@ import sys
 
 def argv_parser(argv: list[str]) -> list[int]:
     argv = argv[1:]
-    argv_int = []
+    argv_int: list[int] = []
     for i in argv:
         try:
             argv_int.append(int(i))
